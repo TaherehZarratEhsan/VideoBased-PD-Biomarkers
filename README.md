@@ -109,7 +109,8 @@ python src/feature_extraction/feature_extaction.py
 This will generate:
 data/processed/combined_features.csv
 
-### Preprocess Videos & Extract keypoints
+
+### pre
 🔧 Generating Your Own Pickle File
 
 If you want to generate the pickle from raw videos, use:
