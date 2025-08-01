@@ -157,6 +157,42 @@ The output will be stored in:
 ```
 data/raw/video_keypoints.pkl
 ```
+### 🔹 Model Training and Evaluation
+
+Once you have extracted the features (`data/processed/combined_features.csv`), you can train and evaluate classification models.
+
+Run:
+
+```bash
+python src/training/optimization_training.py
+```
+
+- Saves:
+  - **Dynamic results** to:
+    ```
+    data/processed/dynamic_save.csv
+    ```
+  - ** plots of metrics with confidence intervals** to:
+    ```
+    data/processed/<model>_performance_metrics.png
+    ```
+
+---
+
+### 📦 Input Files Required
+Place the following in `data/raw/`:
+- `id2vid.csv`: Maps patient IDs to their video paths.  
+- `patient_id_all.csv`: List of all patient IDs.  
+- `segmented_ft_vid2score.csv`: Maps video paths to MDS-UPDRS scores.  
+- `combined_features.csv`: Extracted by running `feature_extaction.py`.
+
+---
+
+### 📊 Output
+- **Dynamic metrics per fold** (`dynamic_save.csv`).  
+- **Aggregated results with confidence intervals** (`results_table_with_CI.csv`).  
+- **Confusion matrices** for each fold and model.  
+- **Bar plots** comparing multi-class and ordinal classification performance.
 
 ---
 
