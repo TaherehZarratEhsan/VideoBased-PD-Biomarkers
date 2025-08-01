@@ -1,17 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Apr 24 14:07:52 2025
-
-@author: Z984222
-"""
-
 import os
 import numpy as np
 from sklearn.metrics import average_precision_score, balanced_accuracy_score, classification_report, roc_auc_score, f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
 from sklearn.model_selection import KFold
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -22,13 +14,9 @@ from sklearn.preprocessing import label_binarize
 import optuna
 #from optuna.integration import SklearnPruningCallback
 from tqdm import tqdm
-from shaphypetune import BoostRFE 
-from sklearn.impute import SimpleImputer
 import gc
-from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import StratifiedKFold, LeaveOneOut
 
-# Configure Seaborn for better aesthetics
 sns.set(style="whitegrid", palette="coolwarm", font_scale=1.2)
 MARGIN = 10  # pixels
 FONT_SIZE = 1
@@ -38,22 +26,12 @@ HANDEDNESS_TEXT_COLOR = (255, 0, 0)  # vibrant red
 class ModelTrainer:
     def __init__(self, config):
         self.config = config
-        self.results = []  # For storing evaluation metrics
-        self.hyperparams_results = []  # For storing the best hyperparameters
+        self.results = []  
+        self.hyperparams_results = []  
         self.id2vid = pd.read_csv(config['id2vid'], header=None)
         self.video_labels = pd.read_csv(config['vid2score'])
-        self.runmyhc = False
-        self.runp1 = False
-        self.runp4 = True
-        if self.runmyhc == True:
-            df = pd.read_csv(r'//chansey.umcn.nl/diag/Tahereh/new/src1/my HC/id_based split/ft/classification/combined_features_9.8_cutoff.csv')
-        if self.runp1 == True:
-            df = pd.read_csv(r'//chansey.umcn.nl/diag/Tahereh/new/src1/my HC/other paper/paper 1_hc/new/video_features.csv')
-            #df = pd.read_csv(r'/projects/0/einf2658/users/TZE/data/p1/p1_video_features.csv')
-        if self.runp4 == True:
-            df = pd.read_csv(r'//chansey.umcn.nl/diag/Tahereh/new/src1/my HC/other paper/paper 4_hc/new/p4_video_features_from_my.csv')
-            #df = pd.read_csv(r'/projects/0/einf2658/users/TZE/data/p4/p4_video_features_from_my.csv')
-
+        features_csv_path = os.path.join(self.config['save_path'], 'combined_features.csv')
+        df = pd.read_csv(features_csv_path)       
         self.patient_ids = df['ids'].astype(str).str.strip("[]'").unique()
         self.set_paths()
         self.n_jobs = 1
@@ -61,33 +39,12 @@ class ModelTrainer:
         self.random_state = 42
         self.stratified_split = True
     def set_paths(self):
-        if self.runmyhc:
-            self.config['save_path'] = r'//chansey.umcn.nl/diag/Tahereh/new/src1/my HC/id_based split/ft/classification'
 
-            self.dynamic_csv = os.path.join(self.config['save_path'], 'dynamic_save.csv')
-            
-            features_csv_path = os.path.join(self.config['save_path'], 'combined_features_9.8_cutoff.csv')
-            self.features_df = pd.read_csv(features_csv_path)
-        
-        if self.runp1:
-            self.config['save_path'] = r'//chansey.umcn.nl/diag/Tahereh/new/src1/my HC/other paper/paper 1_hc/new'
-            #self.config['save_path'] = r'/projects/0/einf2658/users/TZE/data/p1'
-            self.dynamic_csv = os.path.join(self.config['save_path'], 'dynamic_save.csv')
-            features_csv_path = os.path.join(self.config['save_path'], 'p1_video_features.csv')
-            self.features_df = pd.read_csv(features_csv_path)
+        self.dynamic_csv = os.path.join(self.config['save_path'], 'dynamic_save.csv')
+        features_csv_path = os.path.join(self.config['save_path'], 'combined_features.csv')
+        self.features_df = pd.read_csv(features_csv_path)
 
-        if self.runp4:
-                self.config['save_path'] = r'/data/diag/Tahereh/new/src1/my HC/other paper/paper 4_hc/new'
-                #self.config['save_path'] =r'/projects/0/einf2658/users/TZE/data/p4'
-
-                self.dynamic_csv = os.path.join(self.config['save_path'], 'dynamic_save.csv')
-                features_csv_path = os.path.join(self.config['save_path'], 'p4_video_features_from_my.csv')
-                self.features_df = pd.read_csv(features_csv_path)
     def _extract_features_from_csv(self, video_path):
-
-        if self.runp1 == True or self.runp4 == True  :
-
-            video_path = video_path.replace('//chansey.umcn.nl', '/data').replace('\\', '/')
 
         matching_row = self.features_df[self.features_df['video_path'] == video_path]
         
@@ -102,16 +59,7 @@ class ModelTrainer:
     def evaluate_model(self, name, model, X_train, y_train, X_test, y_test, fold, classification_type, best_params):
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
-        # Generate and plot confusion matrix
-        cm = confusion_matrix(y_test, y_pred)
-        disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-        disp.plot(cmap='Blues', xticks_rotation=45)
-        plt.title(f'Confusion Matrix - Fold {fold} ({classification_type}) - {name}')
-        plot_save_path = os.path.join(self.config['save_path'], f'confusion_matrix_{classification_type}_{name}_fold{fold}.png')
-        plt.savefig(plot_save_path, dpi=300)
-        plt.close()
-
-               
+              
         y_pred_proba = model.predict_proba(X_test) if hasattr(model, "predict_proba") else None
 
         accuracy = accuracy_score(y_test, y_pred)
@@ -238,19 +186,7 @@ class ModelTrainer:
             # Final prediction = argmax(P(y = k))
             y_pred = np.argmax(ordinal_probs, axis=1)
         
-            
 
-            # Generate and save confusion matrix for each binary classifier
-            cm = confusion_matrix(y_test, y_pred)
-            disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-            disp.plot(cmap='Blues', xticks_rotation=45)
-            plt.title(f'Confusion Matrix - Fold {fold} (ordinal) - {model_name}')
-            plot_save_path = os.path.join(self.config['save_path'], f'confusion_matrix_{classification_type}_{model_name}_fold{fold}.png')
-            plt.savefig(plot_save_path, dpi=300)
-            plt.close()
-
-            
-            
             acceptable_accuracy = np.mean(np.abs(y_pred - y_test) <= 1)
             accuracy = accuracy_score(y_test, y_pred)
             balanced_accuracy = balanced_accuracy_score(y_test, y_pred)
@@ -362,89 +298,7 @@ class ModelTrainer:
         return train_features_scaled, modified_train_labels, test_features_scaled, modified_test_labels
     
 
-    def extract_features_paper1(self, train_patients, test_patients):
 
-       
-        train_videos, train_labels = [], []
-        for patient in train_patients:
-            video_list = ast.literal_eval(self.id2vid[self.id2vid[0] == patient].iloc[0, 1])
-            for video in video_list:
-                matching_rows = self.video_labels[self.video_labels['video_path'].str.contains(video, regex=False)]
-                if not matching_rows.empty:
-                    for _, row in matching_rows.iterrows():
-                        train_videos.append(row['video_path'])
-                        train_labels.append(row['score'])
-
-        test_videos, test_labels = [], []
-        for patient in test_patients:
-            video_list = eval(self.id2vid[self.id2vid[0] == patient].iloc[0, 1])
-            for video in video_list:
-                matching_rows = self.video_labels[self.video_labels['video_path'].str.contains(video, regex=False)]
-                if not matching_rows.empty:
-                    for _, row in matching_rows.iterrows():
-                        test_videos.append(row['video_path'])
-                        test_labels.append(row['score'])
-
-        
-
-
-        train_features, modified_train_labels = [], []
-        for idx, (vid, label) in enumerate(tqdm(zip(train_videos, train_labels), total=len(train_videos))):  
-            feature = self._extract_features_from_csv(vid)
-            if feature is not None: 
-                train_features.append(feature)
-                modified_train_labels.append(label)
-
-        train_features = pd.DataFrame(train_features)
-        
-                
-        test_features, modified_test_labels = [], []
-        for idx, (vid, label) in enumerate(tqdm(zip(test_videos, test_labels), total=len(test_videos))):
-            
-            feature = self._extract_features_from_csv(vid)
-            if feature is not None: 
-
-                test_features.append(feature)
-                modified_test_labels.append(label)
-
-        test_features = pd.DataFrame(test_features)
-        
-        # Step 1: Remove highly correlated features
-        
-        # Calculate the correlation matrix
-        corr_matrix = np.corrcoef(train_features.values, rowvar=False)
-        correlation_threshold=0.85
-        # Identify highly correlated features
-        correlated_features = set()
-        for i in range(len(corr_matrix)):
-            for j in range(i + 1, len(corr_matrix)):
-                if abs(corr_matrix[i, j]) > correlation_threshold:
-                    correlated_features.add(j)
-     
-        # Create a mask of features that are not highly correlated
-        uncorrelated_mask = np.array([i not in correlated_features for i in range(train_features.values.shape[1])])
-        
-        # Step 2: Scale the features using StandardScaler if enabled
-
-        scaler = StandardScaler()
-        X_train = scaler.fit_transform(train_features.values[:, uncorrelated_mask])
-        X_test = scaler.transform(test_features.values[:, uncorrelated_mask])
-
-        boost_rfe_model = lgb.LGBMClassifier(random_state=self.random_state)
-
-        boost_rfe = BoostRFE(estimator=boost_rfe_model, verbose=1)
-        boost_rfe.fit(X_train, modified_train_labels)
-    
-        # Select top features based on the specified number
-        selected_features_indices = boost_rfe.get_support(indices=True)
-        X_train = X_train[:, selected_features_indices]
-        X_test = X_test[:, selected_features_indices]
-
-        imputer = SimpleImputer(strategy='mean')
-        X_train = imputer.fit_transform(X_train)
-        X_test = imputer.transform(X_test)
-
-        return X_train, X_test, modified_train_labels, modified_test_labels
     
     def run_cross_validation(self):
        
@@ -657,10 +511,8 @@ class ModelTrainer:
             'Logistic Regression': LogisticRegression(random_state=self.random_state),
             'LightGBM': lgb.LGBMClassifier(random_state=self.random_state, verbosity=-1)
         }
-        if self.runmyhc == True or self.runp4 == True:
-            X_train, y_train, X_test, y_test  = self.extract_feat_myhc(train, test)
-        if self.runp1 == True:
-            X_train, X_test, y_train, y_test = self.extract_features_paper1(train, test)  
+        X_train, y_train, X_test, y_test  = self.extract_feat_myhc(train, test)
+
 
         # Evaluate the model using the tuned parameters
         if classification_type == 'multi':
@@ -725,17 +577,6 @@ class ModelTrainer:
         for metric in metrics_to_average:
             merged_results[f'{metric}_ci'] = ci_factor * (merged_results[f'{metric}_std'] / np.sqrt(num_folds))
     
-        # Create a table with mean and CI for each metric
-        table_columns = ['model', 'classification_type'] + \
-                        [f'{metric}_mean' for metric in metrics_to_average] + \
-                        [f'{metric}_ci' for metric in metrics_to_average]
-        results_table = merged_results[table_columns]
-        
-        # Define the path for saving the table
-        table_save_path = os.path.join(self.config['save_path'], 'results_table_with_CI.csv')
-        # Save the table to a CSV file
-        results_table.to_csv(table_save_path, index=False)
-        print(f"Results table saved to: {table_save_path}")
     
         # Plotting logic remains the same (including rotation and offset adjustments)
         sns.set(style="whitegrid", palette="Blues", font_scale=1.1)  # A simpler color palette for academic style
@@ -801,23 +642,19 @@ class ModelTrainer:
        
 if __name__ == "__main__":
     
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(base_dir, "../../"))
 
     CONFIG = {
-        'id2vid': r'//chansey.umcn.nl/diag/Tahereh/new/src/datasets/dataset_preprocessing/id2vid.csv',
-        'ids': r'//chansey.umcn.nl/diag/Tahereh/new/src/datasets/dataset_preprocessing/patient_id_all.csv',
-        'vid2score': r'//chansey.umcn.nl/diag/Tahereh/new/src/datasets/dataset_preprocessing/segmented_ft_vid2score.csv',
+        'id2vid': os.path.join(project_root, 'data/raw/id2vid.csv'),
+        'ids': os.path.join(project_root, 'data/raw/patient_id_all.csv'),
+        'vid2score': os.path.join(project_root, 'data/raw/segmented_ft_vid2score.csv'),
+        'save_path': os.path.join(project_root, 'data/processed'),
         'n_splits': 5,  
     }
 
+    os.makedirs(CONFIG['save_path'], exist_ok=True)
 
-    #CONFIG = {
-    #    'id2vid': r'/projects/0/einf2658/users/TZE/data/id2vid.csv',
-    #    'ids': r'/projects/0/einf2658/users/TZE/data/patient_id_all.csv',
-    #    'vid2score': r'/projects/0/einf2658/users/TZE/data/segmented_ft_vid2score.csv',
-    #    'n_splits': 5,  
-    #}
-    
-    
     trainer = ModelTrainer(CONFIG)
     trainer.run_cross_validation()
     trainer.load_and_plot_results()
