@@ -124,6 +124,23 @@ If you want to build your own pickle file (`video_keypoints.pkl`) from raw video
 
 Save it in `data/raw/segmented_ft_vid2score.csv`.
 
+The Mediapipe hand landmark model is required to extract keypoints.  
+It will be automatically downloaded on first run from:
+
+[Google Cloud Storage – Mediapipe Hand Landmarker](https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task)
+
+Alternatively, you can download it manually:
+
+```bash
+wget https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task -O src/preprocessing/hand_landmarker.task
+```
+
+After download, the file should be located at:
+
+```
+src/preprocessing/hand_landmarker.task
+```
+
 Then run:
 
 ```bash
