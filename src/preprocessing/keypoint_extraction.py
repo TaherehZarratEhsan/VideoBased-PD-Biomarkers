@@ -15,13 +15,34 @@ MARGIN = 10  # pixels
 FONT_SIZE = 1
 FONT_THICKNESS = 1
 HANDEDNESS_TEXT_COLOR = (255, 0, 0)  # vibrant red
+import requests
+
 
 
 class keypointext:
     def __init__(self, config):
         self.config = config
         self.results = {}
- 
+    
+    def download_hand_landmarker(self, model_path):
+         url = "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task"
+         if not os.path.exists(model_path):
+             print(f"Downloading Mediapipe Hand Landmarker model to {model_path}...")
+             response = requests.get(url)
+             response.raise_for_status()
+             with open(model_path, "wb") as f:
+                 f.write(response.content)
+             print("Download complete.")
+         else:
+             print("Hand Landmarker model already exists.")
+     
+    def _init_hand_landmarker(self):
+        model_path = os.path.join(os.path.dirname(__file__), "hand_landmarker.task")
+        self.download_hand_landmarker(model_path)
+        with open(model_path, "rb") as file:
+            model_data = file.read()
+        return model_data
+       
     def angle_signal(self, landmarks, width, height):
             """
             Calculate the angle between the vector connecting wrist to thumb tip
@@ -60,13 +81,7 @@ class keypointext:
         
             return angle
     
-    
-    def _init_hand_landmarker(self):
-        model_path = r'/Tahereh/new/src/Keypoint/hand_landmarker.task'
-        with open(model_path, 'rb') as file:
-            model_data = file.read()
-        return model_data
-      
+
  
    
 
@@ -395,18 +410,18 @@ class keypointext:
              pickle.dump(final_data, f)
 
 if __name__ == "__main__":
-    ################### annotated
+    
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.abspath(os.path.join(base_dir, "../../"))
+
     CONFIG = {
-        'id2vid': r'/Tahereh/new/src/datasets/dataset_preprocessing/id2vid.csv',
-        'ids': r'/Tahereh/new/src/datasets/dataset_preprocessing/patient_id_all.csv',
-        'vid2score': r'/Tahereh/new/src/datasets/dataset_preprocessing/segmented_ft_vid2score.csv',
-        'save_path':  r'/Tahereh/new/src1/my HC/id_based split/ft/classification/',
-        'distance': False,
-        'trimmed':False,
+        "vid2score": os.path.join(project_root, "data/raw/segmented_ft_vid2score.csv"),
+        "save_path": os.path.join(project_root, "data/raw"),
+        "distance": False,  # set True for distance-based, False for angle-based
+        "trimmed": False,
     }
 
-
-    # Instantiate the class and run the cross-validation
+    os.makedirs(CONFIG["save_path"], exist_ok=True)
     trainer = keypointext(CONFIG)
     trainer.run_keypoints()
 
