@@ -184,13 +184,7 @@ python src/training/optimization_training.py
 If you use this repository in your research, please cite:
 
 ```bibtex
-@misc{finger_tapping_analysis,
-  author       = {Your Name},
-  title        = {Finger Tapping Analysis for Parkinson’s Disease},
-  year         = {2025},
-  publisher    = {GitHub},
-  howpublished = {\url{https://github.com/your-username/finger-tapping-analysis}}
-}
+
 ```
 
 ---
