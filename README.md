@@ -1,4 +1,4 @@
-# Finger Tapping Analysis for Parkinson’s Disease
+# Finger Tapping Analysis for Parkinson Disease
 This repository provides the **official implementation** of the methods described in our paper:
 
 
@@ -34,7 +34,7 @@ Parkinson-Digital-Biomarkers/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/Parkinson-Digital-Biomarkers.git
+git clone https://github.com/TaherehZarratEhsan/Parkinson-Digital-Biomarkers.git
 cd Parkinson-Digital-Biomarkers
 ```
 
