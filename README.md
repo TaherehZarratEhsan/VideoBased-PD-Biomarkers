@@ -108,20 +108,18 @@ After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw
 python src/feature_extraction/feature_extaction.py
 ```
 
-This will extract quantitative features (amplitude, speed, tapping interval, variability, Hjorth parameters, etc.) and generate:
+This will extract motor features (amplitude, speed, cycle duration, etc.) and generate:
 
 ```
 data/processed/combined_features.csv
 ```
-
-containing the extracted feature dataset.
 
 ### 🔹 Keypoint Extraction (to generate the pickle from your own videos)
 
 If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
 
 - **video_path**: Full path to each video  
-- **score**: Clinical MDS‑UPDRS score or "Control"  
+- **score**: Clinical MDS‑UPDRS score"  
 - **id**: Patient ID  
 
 Save it in `data/raw/segmented_ft_vid2score.csv`.
