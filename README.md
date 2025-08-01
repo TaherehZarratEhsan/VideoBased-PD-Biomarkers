@@ -1,4 +1,4 @@
-# Finger Tapping Analysis for Parkinson’s Disease
+# Finger Tapping Analysis for Parkinson Disease
 This repository provides the **official implementation** of the methods described in our paper:
 
 
