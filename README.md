@@ -110,42 +110,31 @@ This will generate:
 data/processed/combined_features.csv
 
 
-### pre
-🔧 Generating Your Own Pickle File
+### 🔹 Keypoint Extraction (to generate the pickle from your own videos)
 
-If you want to generate the pickle from raw videos, use:
+If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
+
+- **video_path**: Full path to each video  
+- **score**: Clinical MDS‑UPDRS score or "Control"  
+- **id**: Patient ID  
+
+Save it in `data/raw/segmented_ft_vid2score.csv`.
+
+Then run:
 
 ```bash
 python src/preprocessing/keypoint_extraction.py
 ```
 
-This script:
-- Processes each video using Mediapipe’s `HandLandmarker`.  
-- Extracts and normalizes hand keypoints (distance- or angle-based).  
-- Optionally trims irrelevant parts of the signal.  
-- Saves the results to:
+This will:
+- Process all listed videos using Mediapipe’s HandLandmarker  
+- Extract either **distance‑based** or **angle‑based** signals (set in config)  
+- Save a dictionary with `video_path`, `distances`, `keypoints`, `id`, `label`, and `fps`  
+
+The output will be stored in:
 
 ```
 data/raw/video_keypoints.pkl
-```
-
-The configuration inside `keypoint_extraction.py` specifies:
-- CSV files mapping videos to patient IDs and clinical scores (`vid2score`, `id2vid`, `ids`).  
-- Whether to use distance- or angle-based signals (`distance: True/False`).  
-- Whether to trim irrelevant actions (`trimmed: True/False`).  
-- The save path for the generated pickle.
-
-Example config snippet:
-
-```python
-CONFIG = {
-    'vid2score': 'path/to/segmented_ft_vid2score.csv',
-    'id2vid': 'path/to/id2vid.csv',
-    'ids': 'path/to/patient_id_all.csv',
-    'save_path': 'data/raw/',
-    'distance': False,   # False = angle-based, True = distance-based
-    'trimmed': False,    # Whether to trim irrelevant actions
-}
 ```
 ## 📚 Citation
 
