@@ -86,7 +86,6 @@ After downloading and placing `video_keypoints.pkl` in `data/raw/`, run:
 python src/feature_extraction/feature_extaction.py
 
 This will generate:
-```bash
 data/processed/combined_features.csv
 
 ## 📚 Citation
