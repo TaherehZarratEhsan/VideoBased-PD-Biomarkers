@@ -100,7 +100,7 @@ This file serves as the **input** for `feature_extaction.py`, which extracts mot
 
 ## ▶️ Usage
 
-### 🔹 Feature Extraction (using the pickle)
+### 🔹 Feature Extraction (using the keypoints pickle)
 
 After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
 
