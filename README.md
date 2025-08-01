@@ -19,7 +19,8 @@ finger-tapping-analysis/
 │   │   └── feature_extaction.py
 │   ├── preprocessing/
 │   │   └── FT_myHC_savefeature_annotated.py
-│
+│   ├── training/
+│   │   └── FT_myHC_savefeature_annotated.py
 ├── requirements.txt
 ├── environment.yml
 ├── LICENSE
