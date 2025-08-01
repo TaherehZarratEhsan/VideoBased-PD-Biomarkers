@@ -1,7 +1,7 @@
 # Finger Tapping Analysis for Parkinson’s Disease
+This repository provides the **official implementation** of the methods described in our paper:
 
-This repository provides a pipeline for the **video-based quantification of motor characteristics in Parkinson’s disease** using the **finger tapping test**.  
-It includes preprocessing with Mediapipe, feature extraction, statistical testing, and clustering to capture bradykinesia, sequence effects, and hesitation-halts.
+
 
 ---
 
