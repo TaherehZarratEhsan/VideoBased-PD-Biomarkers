@@ -8,7 +8,7 @@ This repository provides the **official implementation** of the methods describe
 ## 📂 Repository Structure
 
 ```
-finger-tapping-analysis/
+Parkinson-Digital-Biomarkers/
 │
 ├── data/
 │   ├── raw/                 # Downloaded pickle data go here
@@ -34,8 +34,8 @@ finger-tapping-analysis/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/finger-tapping-analysis.git
-cd finger-tapping-analysis
+git clone https://github.com/your-username/Parkinson-Digital-Biomarkers.git
+cd Parkinson-Digital-Biomarkers
 ```
 
 ### Option 1: Conda (recommended)
