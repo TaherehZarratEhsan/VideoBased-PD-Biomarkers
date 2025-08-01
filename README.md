@@ -100,14 +100,6 @@ This file serves as the **input** for `feature_extaction.py`, which extracts mot
 
 ## ▶️ Usage
 
-### Preprocess Videos & Extract Features
-```bash
-python src/preprocessing/FT_myHC_savefeature_annotated.py
-```
-- Processes finger tapping videos with Mediapipe  
-- Extracts keypoints and distance signals  
-- Saves pickle & feature CSV files
-
 ### Feature Extraction
 After downloading and placing `video_keypoints.pkl` in `data/raw/`, run:
 
@@ -117,6 +109,43 @@ python src/feature_extraction/feature_extaction.py
 This will generate:
 data/processed/combined_features.csv
 
+### Preprocess Videos & Extract keypoints
+🔧 Generating Your Own Pickle File
+
+If you want to generate the pickle from raw videos, use:
+
+```bash
+python src/preprocessing/keypoint_extraction.py
+```
+
+This script:
+- Processes each video using Mediapipe’s `HandLandmarker`.  
+- Extracts and normalizes hand keypoints (distance- or angle-based).  
+- Optionally trims irrelevant parts of the signal.  
+- Saves the results to:
+
+```
+data/raw/video_keypoints.pkl
+```
+
+The configuration inside `keypoint_extraction.py` specifies:
+- CSV files mapping videos to patient IDs and clinical scores (`vid2score`, `id2vid`, `ids`).  
+- Whether to use distance- or angle-based signals (`distance: True/False`).  
+- Whether to trim irrelevant actions (`trimmed: True/False`).  
+- The save path for the generated pickle.
+
+Example config snippet:
+
+```python
+CONFIG = {
+    'vid2score': 'path/to/segmented_ft_vid2score.csv',
+    'id2vid': 'path/to/id2vid.csv',
+    'ids': 'path/to/patient_id_all.csv',
+    'save_path': 'data/raw/',
+    'distance': False,   # False = angle-based, True = distance-based
+    'trimmed': False,    # Whether to trim irrelevant actions
+}
+```
 ## 📚 Citation
 
 If you use this repository in your research, please cite:
