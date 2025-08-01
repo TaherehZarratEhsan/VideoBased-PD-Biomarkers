@@ -53,19 +53,50 @@ pip install -r requirements.txt
 
 ## 📥 Data Access
 
+## 📥 Data Access
+
 The raw pickle data (~800 MB) are **too large for GitHub**.  
-They are hosted externally:
+They are hosted externally and must be downloaded before running the feature extraction.
 
 ➡️ [Download Raw Data](https://your-link-to-download.com)
 
-After downloading, place them into:
+After downloading, place the file(s) into:
 ```
 data/raw/
-    ├── video_keypoints.pkl
-
+    └── video_keypoints.pkl
 ```
 
-If you only want to test the pipeline, you may use a subset of the dataset.
+### 📦 Contents of `video_keypoints.pkl`
+
+pickle file is a Python dictionary containing the following keys:
+
+- **`video_path`**: List of video file paths corresponding to each sample.  
+- **`distances`**: List of distance signals (thumb–index distance or angle) for each video.  
+- **`keypoints`**: List of Mediapipe hand keypoints per frame (shape: frames × 21 landmarks × 3 coordinates).  
+- **`id`**: Patient ID for each video.  
+- **`label`**: Clinical MDS-UPDRS score (0–4).  
+- **`fps`**: Frames per second of the corresponding video.
+
+Example code to inspect the pickle file:
+
+```python
+import pickle
+
+with open("data/raw/video_keypoints.pkl", "rb") as f:
+    annotated_data = pickle.load(f)
+
+print("Keys:", annotated_data.keys())
+print("Number of samples:", len(annotated_data['video_path']))
+
+# Example: show first entry
+print("Video path:", annotated_data['video_path'][0])
+print("Patient ID:", annotated_data['id'][0])
+print("Label:", annotated_data['label'][0])
+print("FPS:", annotated_data['fps'][0])
+print("Distance signal length:", len(annotated_data['distances'][0]))
+```
+
+This file serves as the **input** for `feature_extaction.py`, which extracts motor features and saves them in `data/processed/combined_features.csv`.
 
 ---
 
