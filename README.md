@@ -168,7 +168,7 @@ python src/training/optimization_training.py
 ```
 
 - Saves:
-  - **Dynamic results** to:
+  - ** results** to:
     ```
     data/processed/dynamic_save.csv
     ```
@@ -178,24 +178,6 @@ python src/training/optimization_training.py
     ```
 
 ---
-
-### 📦 Input Files Required
-Place the following in `data/raw/`:
-- `id2vid.csv`: Maps patient IDs to their video paths.  
-- `patient_id_all.csv`: List of all patient IDs.  
-- `segmented_ft_vid2score.csv`: Maps video paths to MDS-UPDRS scores.  
-- `combined_features.csv`: Extracted by running `feature_extaction.py`.
-
----
-
-### 📊 Output
-- **Dynamic metrics per fold** (`dynamic_save.csv`).  
-- **Aggregated results with confidence intervals** (`results_table_with_CI.csv`).  
-- **Confusion matrices** for each fold and model.  
-- **Bar plots** comparing multi-class and ordinal classification performance.
-
----
-
 
 ## 📚 Citation
 
