@@ -62,7 +62,7 @@ After downloading, place them into:
 ```
 data/raw/
     ├── video_keypoints.pkl
-    └── control_keypoints.pkl
+
 ```
 
 If you only want to test the pipeline, you may use a subset of the dataset.
