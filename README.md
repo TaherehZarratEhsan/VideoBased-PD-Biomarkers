@@ -8,7 +8,7 @@ This repository provides the **official implementation** of the methods describe
 ## 📂 Repository Structure
 
 ```
-finger-tapping-analysis/
+Parkinson-Digital-Biomarkers/
 │
 ├── data/
 │   ├── raw/                 # Downloaded pickle data go here
@@ -18,8 +18,9 @@ finger-tapping-analysis/
 │   ├── feature_extraction/
 │   │   └── feature_extaction.py
 │   ├── preprocessing/
-│   │   └── FT_myHC_savefeature_annotated.py
-│
+│   │   └── keypoint_extraction.py
+│   ├── training/
+│   │   └── optimization_training.py
 ├── requirements.txt
 ├── environment.yml
 ├── LICENSE
@@ -33,8 +34,8 @@ finger-tapping-analysis/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/finger-tapping-analysis.git
-cd finger-tapping-analysis
+git clone https://github.com/your-username/Parkinson-Digital-Biomarkers.git
+cd Parkinson-Digital-Biomarkers
 ```
 
 ### Option 1: Conda (recommended)
@@ -53,18 +54,47 @@ pip install -r requirements.txt
 ## 📥 Data Access
 
 The raw pickle data (~800 MB) are **too large for GitHub**.  
-They are hosted externally:
+They are hosted externally and must be downloaded before running the feature extraction.
 
 ➡️ [Download Raw Data](https://your-link-to-download.com)
 
-After downloading, place them into:
+After downloading, place the file(s) into:
 ```
 data/raw/
-    ├── video_keypoints.pkl
-    └── control_keypoints.pkl
+    └── video_keypoints.pkl
 ```
 
-If you only want to test the pipeline, you may use a subset of the dataset.
+### 📦 Contents of `video_keypoints.pkl`
+
+pickle file is a Python dictionary containing the following keys:
+
+- **`video_path`**: List of video file paths corresponding to each sample.  
+- **`distances`**: List of distance signals (thumb–index distance or angle) for each video.  
+- **`keypoints`**: List of Mediapipe hand keypoints per frame (shape: frames × 21 landmarks × 3 coordinates).  
+- **`id`**: Patient ID for each video.  
+- **`label`**: Clinical MDS-UPDRS score (0–4).  
+- **`fps`**: Frames per second of the corresponding video.
+
+Example code to inspect the pickle file:
+
+```python
+import pickle
+
+with open("data/raw/video_keypoints.pkl", "rb") as f:
+    annotated_data = pickle.load(f)
+
+print("Keys:", annotated_data.keys())
+print("Number of samples:", len(annotated_data['video_path']))
+
+# Example: show first entry
+print("Video path:", annotated_data['video_path'][0])
+print("Patient ID:", annotated_data['id'][0])
+print("Label:", annotated_data['label'][0])
+print("FPS:", annotated_data['fps'][0])
+print("Distance signal length:", len(annotated_data['distances'][0]))
+```
+
+This file serves as the **input** for `feature_extaction.py`, which extracts motor features and saves them in `data/processed/combined_features.csv`.
 
 ---
 
@@ -78,13 +108,14 @@ python src/preprocessing/FT_myHC_savefeature_annotated.py
 - Extracts keypoints and distance signals  
 - Saves pickle & feature CSV files
 
-### Run Feature Extraction & Analysis
+### Feature Extraction
+After downloading and placing `video_keypoints.pkl` in `data/raw/`, run:
+
 ```bash
 python src/feature_extraction/feature_extaction.py
-```
-- Computes quantitative features (amplitude, speed, tapping interval, etc.)  
-- Performs ANOVA, t-tests, or Mann–Whitney U tests based on normality  
-- Generates boxplots, correlation heatmaps, clustering visualizations
+
+This will generate:
+data/processed/combined_features.csv
 
 ## 📚 Citation
 
