@@ -100,22 +100,66 @@ This file serves as the **input** for `feature_extaction.py`, which extracts mot
 
 ## ▶️ Usage
 
-### Preprocess Videos & Extract Features
-```bash
-python src/preprocessing/FT_myHC_savefeature_annotated.py
-```
-- Processes finger tapping videos with Mediapipe  
-- Extracts keypoints and distance signals  
-- Saves pickle & feature CSV files
+### 🔹 Feature Extraction (using the keypoints pickle)
 
-### Feature Extraction
-After downloading and placing `video_keypoints.pkl` in `data/raw/`, run:
+After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
 
 ```bash
 python src/feature_extraction/feature_extaction.py
+```
 
-This will generate:
+This will extract motor features (amplitude, speed, cycle duration, etc.) and generate:
+
+```
 data/processed/combined_features.csv
+```
+
+### 🔹 Keypoint Extraction (to generate the pickle from your own videos)
+
+If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
+
+- **video_path**: Full path to each video  
+- **score**: Clinical MDS‑UPDRS score"  
+- **id**: Patient ID  
+
+Save it in `data/raw/segmented_ft_vid2score.csv`.
+
+The Mediapipe hand landmark model is required to extract keypoints.  
+It will be automatically downloaded on first run from:
+
+[Google Cloud Storage – Mediapipe Hand Landmarker](https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task)
+
+Alternatively, you can download it manually:
+
+```bash
+wget https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task -O src/preprocessing/hand_landmarker.task
+```
+
+After download, the file should be located at:
+
+```
+src/preprocessing/hand_landmarker.task
+```
+
+Then run:
+
+```bash
+python src/preprocessing/keypoint_extraction.py
+```
+
+This will:
+- Process all listed videos using Mediapipe’s HandLandmarker  
+- Extract either distance‑based or angle‑based signals (set in config)  
+- Save a dictionary with `video_path`, `distances`, `keypoints`, `id`, `label`, and `fps`  
+
+The output will be stored in:
+
+```
+data/raw/video_keypoints.pkl
+```
+
+---
+
 
 ## 📚 Citation
 
