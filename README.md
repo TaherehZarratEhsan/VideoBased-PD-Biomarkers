@@ -19,19 +19,7 @@ finger-tapping-analysis/
 │   │   └── feature_extaction.py
 │   ├── preprocessing/
 │   │   └── FT_myHC_savefeature_annotated.py
-│   └── utils/
-│       └── plotting.py      # optional shared plotting functions
 │
-├── notebooks/
-│   ├── 01_feature_extraction.ipynb
-│   ├── 02_statistical_analysis.ipynb
-│   └── 03_clustering_visualization.ipynb
-│
-├── results/
-│   ├── figures/             # saved plots
-│   └── stats/               # CSV results
-│
-├── tests/                   # Unit tests for reproducibility
 ├── requirements.txt
 ├── environment.yml
 ├── LICENSE
@@ -82,7 +70,7 @@ If you only want to test the pipeline, you may use a subset of the dataset.
 
 ## ▶️ Usage
 
-### 1. Preprocess Videos & Extract Features
+### Preprocess Videos & Extract Features
 ```bash
 python src/preprocessing/FT_myHC_savefeature_annotated.py
 ```
@@ -90,65 +78,13 @@ python src/preprocessing/FT_myHC_savefeature_annotated.py
 - Extracts keypoints and distance signals  
 - Saves pickle & feature CSV files
 
-### 2. Run Feature Extraction & Analysis
+### Run Feature Extraction & Analysis
 ```bash
 python src/feature_extraction/feature_extaction.py
 ```
 - Computes quantitative features (amplitude, speed, tapping interval, etc.)  
 - Performs ANOVA, t-tests, or Mann–Whitney U tests based on normality  
 - Generates boxplots, correlation heatmaps, clustering visualizations
-
-### 3. Explore in Jupyter
-```bash
-jupyter notebook notebooks/01_feature_extraction.ipynb
-```
-
----
-
-## 📊 Results
-
-- **Figures**  
-  - Boxplots with ANOVA brackets  
-  - Correlation heatmaps (Pearson & Spearman)  
-  - PCA & clustering plots (KMeans, DBSCAN, HDBSCAN)
-
-- **Statistical Outputs**  
-  - ANOVA results  
-  - Pairwise t-tests & Mann–Whitney U with Bonferroni correction  
-  - Correlation coefficients with p-values  
-
-All results are saved under:
-```
-results/
-    ├── figures/
-    └── stats/
-```
-
----
-
-## 🧪 Testing
-
-Run unit tests with `pytest`:
-
-```bash
-pytest tests/
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!  
-Please open an issue or submit a pull request if you’d like to improve this repository.
-
-Steps:
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -m "Add new feature"`)
-4. Push to your fork (`git push origin feature-branch`)
-5. Open a Pull Request
-
----
 
 ## 📚 Citation
 
