@@ -157,9 +157,27 @@ The output will be stored in:
 ```
 data/raw/video_keypoints.pkl
 ```
+### 🔹 Model Training and Evaluation
+
+Once you have extracted the features (`data/processed/combined_features.csv`), you can train and evaluate classification models.
+
+Run:
+
+```bash
+python src/training/optimization_training.py
+```
+
+- Saves:
+  - ** results** to:
+    ```
+    data/processed/dynamic_save.csv
+    ```
+  - ** plots of metrics with confidence intervals** to:
+    ```
+    data/processed/<model>_performance_metrics.png
+    ```
 
 ---
-
 
 ## 📚 Citation
 
