@@ -79,13 +79,15 @@ python src/preprocessing/FT_myHC_savefeature_annotated.py
 - Extracts keypoints and distance signals  
 - Saves pickle & feature CSV files
 
-### Run Feature Extraction & Analysis
+### Feature Extraction
+After downloading and placing `video_keypoints.pkl` in `data/raw/`, run:
+
 ```bash
 python src/feature_extraction/feature_extaction.py
-```
-- Computes quantitative features (amplitude, speed, tapping interval, etc.)  
-- Performs ANOVA, t-tests, or Mann–Whitney U tests based on normality  
-- Generates boxplots, correlation heatmaps, clustering visualizations
+
+This will generate:
+```bash
+data/processed/combined_features.csv
 
 ## 📚 Citation
 
