@@ -100,15 +100,21 @@ This file serves as the **input** for `feature_extaction.py`, which extracts mot
 
 ## ▶️ Usage
 
-### Feature Extraction
-After downloading and placing `video_keypoints.pkl` in `data/raw/`, run:
+### 🔹 Feature Extraction (using the pickle)
+
+After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
 
 ```bash
 python src/feature_extraction/feature_extaction.py
+```
 
-This will generate:
+This will extract quantitative features (amplitude, speed, tapping interval, variability, Hjorth parameters, etc.) and generate:
+
+```
 data/processed/combined_features.csv
+```
 
+containing the extracted feature dataset.
 
 ### 🔹 Keypoint Extraction (to generate the pickle from your own videos)
 
@@ -136,6 +142,10 @@ The output will be stored in:
 ```
 data/raw/video_keypoints.pkl
 ```
+
+---
+
+
 ## 📚 Citation
 
 If you use this repository in your research, please cite:
