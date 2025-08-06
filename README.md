@@ -1,4 +1,4 @@
-# Finger Tapping Analysis for Parkinson Disease
+# VisionPD: Video-Based Quantification of Motor Characteristics in the Parkinson Disease 
 This repository provides the **official implementation** of the methods described in our paper:
 
 
