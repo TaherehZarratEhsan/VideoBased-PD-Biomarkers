@@ -68,7 +68,6 @@ class ModelTrainer:
         balanced_accuracy = balanced_accuracy_score(y_test, y_pred)
         acceptable_accuracy = np.mean(np.abs(y_pred - y_test) <= 1)
 
-       # Check if more than one class is present in y_test
         if len(np.unique(y_test)) > 1:
            all_classes = np.arange(5)  # Assuming your 5 classes are labeled as 0, 1, 2, 3, 4
            y_test_binarized = label_binarize(y_test, classes=all_classes)
@@ -76,20 +75,17 @@ class ModelTrainer:
            # Initialize y_pred_proba_full with zeros for all classes
            y_pred_proba_full = np.zeros((y_pred.shape[0], len(all_classes)))
    
-           # Map model classes to the correct columns in y_pred_proba_full
            present_classes = model.classes_
            for idx, cls in enumerate(present_classes):
                class_index = np.where(all_classes == cls)[0][0]  # Find the corresponding index in all_classes
                y_pred_proba_full[:, class_index] = y_pred_proba[:, idx]
    
-           # Identify columns in y_test_binarized that have more than one unique value
            valid_columns = []
            for i in range(y_test_binarized.shape[1]):
                unique_values = np.unique(y_test_binarized[:, i])
                if len(unique_values) > 1:
                    valid_columns.append(i)
    
-           # Check if there are any valid columns left for ROC AUC calculation
            if valid_columns:
                # Select only valid columns from y_test_binarized and y_pred_proba_full
                y_test_filtered = y_test_binarized[:, valid_columns]
@@ -139,7 +135,6 @@ class ModelTrainer:
 
         }
     
-        # Fill in the hyperparameters for the respective model
         for param, value in best_params.items():
             if param in result_row:
                 result_row[param] = value
@@ -196,7 +191,6 @@ class ModelTrainer:
         
      
         
-           # Initialize default hyperparameter values for consistency
             result_row = {
                 'fold': fold,
                 'ids': self.test_patients,
@@ -228,7 +222,6 @@ class ModelTrainer:
                 'precision': precision
             }
         
-            # Fill in the hyperparameters for the respective model
             for param, value in best_params.items():
                 if param in result_row:
                     result_row[param] = value
@@ -238,7 +231,6 @@ class ModelTrainer:
             self.results.append(result_row)
     def extract_feat_myhc(self, train_patients, test_patients):
 
-        # Split patients into training and test sets
         # Prepare training data
         train_videos = []
         train_labels = []
@@ -327,9 +319,7 @@ class ModelTrainer:
 
         
     def optimize_hyperparameters_multi(self, model_name, X_train, y_train, fold):
-        """Optimize hyperparameters using Optuna for the given model."""
     
-        # Ensure y_train is a NumPy array
         y_train = np.array(y_train)
         
         def objective(trial):
