@@ -159,21 +159,7 @@ class feature_ext_analysis:
          num_interruptions2 = sum(interval > threshold for interval in tapping_intervals)
          ################################################################################################
 
-         # FFT-based maximum magnitude feature (dominant frequency component magnitude)
-         n = len(distances_)
-         fft_spectrum = np.abs(np.fft.rfft(distances_))
-         fft_spectrum_no_dc = fft_spectrum[1:]  # Exclude DC component (index 0)
-         max_freq_magnitude = np.max(fft_spectrum_no_dc)
-
-         #  Hjorth Parameters
-         first_deriv = np.diff(distances_)
-         var_zero = np.var(distances_)
-         var_d1 = np.var(first_deriv)
-         hjorth_mob = np.sqrt(var_d1 / var_zero) #if var_zero > 0 else 0
-             
-
-         #########################################################################################
-         
+        
      
          features = {'avg_amplitude': avg_amplitude,
                      'mean_percycle_max_speed':mean_percycle_max_speed,
@@ -187,8 +173,6 @@ class feature_ext_analysis:
                      'cov_per_cycle_speed_maxima':cov_per_cycle_speed_maxima,
                      'cov_per_cycle_speed_avg':cov_per_cycle_speed_avg,
                      'num_interruptions2':num_interruptions2,
-                     'hjorth_mob':hjorth_mob, 
-                     'max_freq_magnitude':max_freq_magnitude, 
                      }
 
          feat_name = ['ids', 'video_path', 'label'] + list(features.keys())
