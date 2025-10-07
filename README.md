@@ -4,7 +4,6 @@
 
 ---
 ![Demo](assets/ft.gif)
-This repository provides the **official implementation** of the methods described in our paper:
 
 ## 📂 Repository Structure
 
