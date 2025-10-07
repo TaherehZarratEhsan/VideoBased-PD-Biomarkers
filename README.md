@@ -53,8 +53,7 @@ pip install -r requirements.txt
 
 ## 📥 Data Access
 
-The raw pickle data (~800 MB) are **too large for GitHub**.  
-They are hosted externally and must be downloaded before running the feature extraction.
+The pickle data are hosted externally and must be downloaded before running the feature extraction.
 
 ➡️ [Download Raw Data](https://your-link-to-download.com)
 
