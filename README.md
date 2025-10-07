@@ -1,4 +1,4 @@
-# VisionPD: Video-Based Quantification of Motor Characteristics in the Parkinson Disease 
+# PDTracker: Video-Based Quantification of Motor Characteristics in the Parkinson Disease 
 This repository provides the **official implementation** of the methods described in our paper:
 
 
@@ -53,8 +53,7 @@ pip install -r requirements.txt
 
 ## 📥 Data Access
 
-The raw pickle data (~800 MB) are **too large for GitHub**.  
-They are hosted externally and must be downloaded before running the feature extraction.
+The pickle data are hosted externally and must be downloaded before running the feature extraction.
 
 ➡️ [Download Raw Data](https://your-link-to-download.com)
 
@@ -191,4 +190,4 @@ If you use this repository in your research, please cite:
 
 ## 📜 License
 
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache 2.0 License.
