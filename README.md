@@ -4,6 +4,7 @@ This repository provides the **official implementation** of the methods describe
 
 
 ---
+![Demo](assets/ft.gif)
 
 ## 📂 Repository Structure
 
