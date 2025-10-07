@@ -1,9 +1,9 @@
 # PDTracker: Video-Based Quantification of Motor Characteristics in the Parkinson Disease 
-This repository provides the **official implementation** of the methods described in our paper:
 
 
 
 ---
+![Demo](assets/ft.gif)
 
 ## 📂 Repository Structure
 
