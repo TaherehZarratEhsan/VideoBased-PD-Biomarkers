@@ -4,7 +4,7 @@
 
 ---
 ![Demo](assets/ft.gif)
-
+![Demo](assets/la.gif)
 ## 📂 Repository Structure
 
 ```
