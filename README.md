@@ -77,13 +77,7 @@ It will be automatically downloaded on first run from:
 
 [Google Cloud Storage – Mediapipe Hand Landmarker](https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task)
 
-Alternatively, you can download it manually:
-
-```bash
-wget https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task -O src/preprocessing/hand_landmarker.task
-```
-
-After download, the file should be located at:
+Alternatively, you can download it manually. After download, the file should be located at:
 
 ```
 src/preprocessing/hand_landmarker.task
