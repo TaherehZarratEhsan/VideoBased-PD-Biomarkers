@@ -130,11 +130,7 @@ More details on the procedure can be found on the [project website](https://www.
 
 If you use this repository in your research, please cite:
 
-## 📄 Citation
-
-If you use this work, please cite the following paper:
-
-> **Zarrat Ehsan T**, Tangermann M, Güçlütürk Y, Bloem B R, Evers L J.  
+> Zarrat Ehsan T, Tangermann M, Güçlütürk Y, Bloem B R, Evers L J.  
 > *Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger Tapping Test in Parkinson Disease.*  
 > **arXiv e-prints**, 2025 Jun: arXiv-2506.  
 > [📘 View on arXiv]([https://arxiv.org/abs/2506.18925])
