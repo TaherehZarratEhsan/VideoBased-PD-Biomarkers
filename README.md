@@ -137,7 +137,7 @@ If you use this repository in your research, please cite:
 
 ---
 
-## 🧠 BibTeX
+## BibTeX
 
 ```bibtex
 @article{zarratehsan2025finger,
@@ -149,7 +149,7 @@ If you use this repository in your research, please cite:
   eprint={2506.18925},
   archivePrefix={arXiv}
 }
-
+---
 ## 📜 License
 
 This project is licensed under the Apache 2.0 License.
