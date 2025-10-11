@@ -30,7 +30,7 @@ Parkinson-Digital-Biomarkers/
 Clone the repository:
 
 ```bash
-git clone https://github.com/TaherehZarratEhsan/Parkinson-Digital-Biomarkers.git
+git clone https://github.com/TaherehZarratEhsan/VideoBased-PD-Biomarkers.git
 cd Parkinson-Digital-Biomarkers
 ```
 
