@@ -7,7 +7,7 @@
 Parkinson-Digital-Biomarkers/
 │
 ├── data/
-│   ├── raw/                 # Downloaded pickle data go here
+│   ├── raw/                 # Downloaded data go here
 │   └── processed/           # CSVs and processed feature files
 │
 ├── src/
