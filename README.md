@@ -150,6 +150,6 @@ If you use this repository in your research, please cite:
   archivePrefix={arXiv}
 }
 ---
-## 📜 License
+## License
 
 This project is licensed under the Apache 2.0 License.
