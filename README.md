@@ -137,7 +137,7 @@ If you use this repository in your research, please cite:
 
 ---
 
-## BibTeX
+## 📘 BibTeX
 
 @article{zarratehsan2025finger,
   title={Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger Tapping Test in Parkinson Disease},
@@ -149,5 +149,5 @@ If you use this repository in your research, please cite:
   archivePrefix={arXiv}
 }
 
-## License
+## 📜 License
 This project is licensed under the Apache 2.0 License.
