@@ -31,7 +31,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/TaherehZarratEhsan/VideoBased-PD-Biomarkers.git
-cd Parkinson-Digital-Biomarkers
+cd VideoBased-PD-Biomarkers
 ```
 
 ### Option 1: Conda (recommended)
