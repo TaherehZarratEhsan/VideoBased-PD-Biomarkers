@@ -4,7 +4,7 @@
 ## 📂 Repository Structure
 
 ```
-Parkinson-Digital-Biomarkers/
+VideoBased-PD-Biomarkers/
 │
 ├── data/
 │   ├── raw/                 # Downloaded data go here
