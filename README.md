@@ -132,12 +132,12 @@ If you use this repository in your research, please cite:
 
 > Zarrat Ehsan T, Tangermann M, Güçlütürk Y, Bloem B R, Evers L J.  
 > *Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger Tapping Test in Parkinson Disease.*  
-> **arXiv e-prints**, 2025 Jun: arXiv-2506.  
-> [📘 View on arXiv]([https://arxiv.org/abs/2506.18925])
+> arXiv e-prints, 2025 Jun: arXiv-2506.  
+> [📘 View on arXiv](https://arxiv.org/abs/2506.18925)
 
 ---
 
-### 🧠 BibTeX
+## 🧠 BibTeX
 
 ```bibtex
 @article{zarratehsan2025finger,
