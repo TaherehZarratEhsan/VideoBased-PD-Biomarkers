@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ### 🔹 Finger tapping demo
 --
 
-### 🔹 Keypoint Extraction (to generate the pickle from your own videos)
+### 🔹 Keypoint Extraction
 
 If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
 
@@ -87,7 +87,7 @@ The output will be stored in:
 ```
 data/raw/video_keypoints.pkl
 ```
-### 🔹 Feature Extraction (using the keypoints pickle)
+### 🔹 Feature Extraction
 
 After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
 
