@@ -47,7 +47,8 @@ pip install -r requirements.txt
 
 ---
 ## ▶️ Usage
-
+### 🔹 Finger tapping demo
+--
 ### 🔹 Feature Extraction (using the keypoints pickle)
 
 After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
