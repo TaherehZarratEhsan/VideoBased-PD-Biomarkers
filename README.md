@@ -47,22 +47,10 @@ pip install -r requirements.txt
 
 ---
 ## ▶️ Usage
+### 🔹 Finger tapping demo
+--
 
-### 🔹 Feature Extraction (using the keypoints pickle)
-
-After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
-
-```bash
-python src/feature_extraction/feature_extaction.py
-```
-
-This will extract motor features (amplitude, speed, cycle duration, etc.) and generate:
-
-```
-data/processed/combined_features.csv
-```
-
-### 🔹 Keypoint Extraction (to generate the pickle from your own videos)
+### 🔹 Keypoint Extraction
 
 If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
 
@@ -98,6 +86,19 @@ The output will be stored in:
 
 ```
 data/raw/video_keypoints.pkl
+```
+### 🔹 Feature Extraction
+
+After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
+
+```bash
+python src/feature_extraction/feature_extaction.py
+```
+
+This will extract motor features (amplitude, speed, cycle duration, etc.) and generate:
+
+```
+data/processed/combined_features.csv
 ```
 ### 🔹 Model Training and Evaluation
 
