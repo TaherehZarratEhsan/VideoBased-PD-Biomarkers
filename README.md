@@ -1,6 +1,6 @@
 
-![Demo](assets/ft.gif)
-![Demo](assets/la.gif)
+![Demo](assets/FT.gif)
+![Demo](assets/LA.gif)
 ## 📂 Repository Structure
 
 ```
