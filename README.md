@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="assets/FT.gif" width="35%" />
+  <img src="assets/ft.gif" width="35%" />
   <img src="assets/LA.gif" width="35%" />
 </p>
 
