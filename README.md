@@ -1,7 +1,6 @@
 
-![Demo](assets/FT.gif)
-
-![Demo](assets/LA.gif)
+![Finger Tapping Demo](assets/FT.gif)
+![Leg Agility Demo](assets/LA.gif)
 ## 📂 Repository Structure
 
 ```
