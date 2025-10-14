@@ -1,7 +1,7 @@
 
 <p align="center">
-  <img src="assets/ft.gif" width="48%" />
-  <img src="assets/LA.gif" width="48%" />
+  <img src="assets/ft.gif" width="50%" />
+  <img src="assets/LA.gif" width="50%" />
 </p>
 
 ## 📂 Repository Structure
