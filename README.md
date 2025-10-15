@@ -1,7 +1,7 @@
 ### Quantifying Motor Characteristics in Parkinson Disease Using Computer Vision Techniques
 
 This repository contains the official implementation of our paper:  
-**[Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson’s Disease](https://arxiv.org/abs/2506.18925).**
+**[Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson Disease](https://arxiv.org/abs/2506.18925).**
 
 
 <p align="center">
