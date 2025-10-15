@@ -1,4 +1,4 @@
-# Quantifying Motor Characteristics in Parkinson Disease Using Computer Vision Techniques
+## Quantifying Motor Characteristics in Parkinson Disease Using Computer Vision Techniques
 Official Implementation  
 [Paper](https://arxiv.org/abs/2506.18925) 
 
