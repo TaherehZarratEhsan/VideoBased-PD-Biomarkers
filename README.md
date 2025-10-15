@@ -1,5 +1,5 @@
 # Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson’s Disease
-Official PyTorch Implementation  
+Official Implementation  
 [Paper](https://arxiv.org/abs/2506.18925) 
 
 This repository contains the official PyTorch implementation of our paper:  
