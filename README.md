@@ -1,12 +1,12 @@
 ## Quantifying Motor Characteristics in Parkinson Disease Using Computer Vision Techniques
 Official Implementation  
-[Paper](https://arxiv.org/abs/2506.18925) 
 
 This repository contains the official PyTorch implementation of our paper:  
-**Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson’s Disease.**
+**[Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson’s Disease](https://arxiv.org/abs/2506.18925).**
 
 Tahereh Zarrat Ehsan, Michael Tangermann, Yağmur Güçlütürk, Bastiaan R. Bloem, Luc J. W. Evers  
-Radboud University
+Radboud University Medical Center, Donders Institute for Brain, Cognition and Behaviour
+
 
 
 <p align="center">
