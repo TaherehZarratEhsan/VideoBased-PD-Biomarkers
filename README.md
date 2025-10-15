@@ -1,4 +1,4 @@
-
+# Official Implementation of “Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson’s Disease”
 <p align="center">
   <img src="assets/ft.gif" width="49%" />
   <img src="assets/LA.gif" width="49%" />
