@@ -133,12 +133,13 @@ python src/training/optimization_training.py
 
 ---
 ### 🔹 Part 2: Easy Demo (Quick Video-to-Results)
-
+---
 ## 📥 Data Access
 
 Data from the [Personalized Parkinson Project](https://www.personalizedparkinsonproject.com/home) used in the present study were retrieved from the [PEP database](https://pep.cs.ru.nl/index.html).  
 The PPP data are available upon request via [ppp-data@radboudumc.nl](mailto:ppp-data@radboudumc.nl).  
 More details on the procedure can be found on the [project website](https://www.personalizedparkinsonproject.com/home).
+---
 ## 📚 Citation
 
 If you use this repository in your research, please cite:
@@ -161,6 +162,6 @@ If you use this repository in your research, please cite:
   eprint={2506.18925},
   archivePrefix={arXiv}
 }
-
+---
 ## 📜 License
 This project is licensed under the Apache 2.0 License.
