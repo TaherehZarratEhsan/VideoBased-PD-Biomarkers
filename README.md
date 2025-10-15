@@ -1,4 +1,4 @@
-# Interpretable and Granular Video-Based Quantification of Motor Characteristics from the Finger-Tapping Test in Parkinson’s Disease
+# Quantifying Motor Characteristics in Parkinson Disease Using Computer Vision Techniques
 Official Implementation  
 [Paper](https://arxiv.org/abs/2506.18925) 
 
