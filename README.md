@@ -5,6 +5,7 @@ Tahereh Zarrat Ehsan, Michael Tangermann, Yağmur Güçlütürk, Bastiaan R. Blo
 Radboud University Medical Center, Donders Institute for Brain, Cognition and Behaviour
 
 
+<p align="center">
   <img src="assets/ft.gif" width="49%" />
   <img src="assets/LA.gif" width="49%" />
 </p>
