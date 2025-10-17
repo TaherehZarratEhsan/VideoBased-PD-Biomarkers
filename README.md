@@ -134,7 +134,28 @@ python src/training/optimization_training.py
 ---
 
 ### 🔹 Part 2: Easy Demo (Quick Video-to-Results)
+🔹 Part 2: Easy Demo (Quick Video-to-Results)
 
+This demo provides a lightweight way to test the complete pipeline — from raw video input to automatic feature extraction and visualization — using only a single Python script.
+It runs locally without requiring the full dataset or preprocessing structure of the main implementation.
+
+📁 Script location
+
+src/demo/ft_video_analysis.py
+
+▶️ Run the demo
+python ft_video_analysis.py --video_path "C:/Users/Tahereh/video.MP4" --hand2track Right
+
+
+Arguments:
+
+--video_path: Path to the input video file
+
+--hand2track: Which hand to analyze (Left or Right)
+
+💡 Example:
+
+python ft_video_analysis.py --video_path "sample_videos/finger_tapping_right.MP4" --hand2track Righ
 
 ## 📥 Data Access
 
