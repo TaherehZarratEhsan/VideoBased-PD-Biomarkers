@@ -31,7 +31,7 @@ Radboud University, Donders Institute for Brain, Cognition and Behaviour
 │ ├── 📁 training/
 │ │ └── 📄 optimization_training.py # Model training and evaluation scripts
 │ └── 📁 demo/
-│ └── 📄 ft_video_analysis.py # Standalone demo: video → features → plots
+│ └── 📄 ft_demo.py # Standalone demo: video → features → plots
 │
 ├── 📄 requirements.txt # Python dependencies
 ├── 📄 environment.yml # Conda environment setup
