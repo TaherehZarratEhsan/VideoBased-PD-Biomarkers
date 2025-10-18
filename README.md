@@ -136,7 +136,6 @@ python src/training/optimization_training.py
 ---
 
 ### 🔹 Part 2: Easy Demo (Quick Video-to-Results)
-🔹 Part 2: Easy Demo (Quick Video-to-Results)
 
 This demo offers a simple end-to-end example that runs the full analysis pipeline — from a raw video to automatic feature extraction and visualization.
 It can be executed locally without any dataset setup or preprocessing steps from the main implementation.
