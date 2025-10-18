@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 ---
 ## ▶️ Usage
-### 🔹 Part 1: Official Implementation (Reproduction of the Paper)
+### 🔹 Part 1: Official Implementation
 #### 🔹 Keypoint Extraction
 
 If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
