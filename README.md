@@ -17,23 +17,25 @@ Radboud University, Donders Institute for Brain, Cognition and Behaviour
 ## 📂 Repository Structure
 
 ```
-VideoBased-PD-Biomarkers/
+📁 VideoBased-PD-Biomarkers/
 │
-├── data/
-│   ├── raw/                 # Downloaded data go here
-│   └── processed/           # CSVs and processed feature files
+├── 📁 data/
+│ ├── 📁 raw/ # Raw data and extracted keypoints (.pkl)
+│ └── 📁 processed/ # Processed CSVs and derived feature files
 │
-├── src/
-│   ├── feature_extraction/
-│   │   └── feature_extaction.py
-│   ├── preprocessing/
-│   │   └── keypoint_extraction.py
-│   ├── training/
-│   │   └── optimization_training.py
-├── requirements.txt
-├── environment.yml
-├── LICENSE
-└── README.md
+├── 📁 src/
+│ ├── 📁 preprocessing/
+│ │ └── 📄 keypoint_extraction.py # Extracts hand keypoints using Mediapipe
+│ ├── 📁 feature_extraction/
+│ │ └── 📄 feature_extraction.py # Computes motor features (amplitude, speed, etc.)
+│ ├── 📁 training/
+│ │ └── 📄 optimization_training.py # Model training and evaluation scripts
+│ └── 📁 demo/
+│ └── 📄 ft_video_analysis.py # Standalone demo: video → features → plots
+│
+├── 📄 requirements.txt # Python dependencies
+├── 📄 environment.yml # Conda environment setup
+└── 📘 README.md # Project documentation
 ```
 
 ---
