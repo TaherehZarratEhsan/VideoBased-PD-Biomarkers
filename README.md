@@ -150,15 +150,11 @@ src/demo/ft_video_analysis.py
 python ft_video_analysis.py --video_path "C:/Users/Tahereh/video.MP4" --hand2track Right
 ```
 Arguments:
-
+    ```
 --video_path: Path to the input video file
-
 --hand2track: Which hand to analyze (Left or Right)
-
-💡 Example:
-
-python ft_video_analysis.py --video_path "sample_videos/finger_tapping_right.MP4" --hand2track Righ
-
+    ```
+    
 ## 📥 Data Access
 
 Data from the [Personalized Parkinson Project](https://www.personalizedparkinsonproject.com/home) used in the present study were retrieved from the [PEP database](https://pep.cs.ru.nl/index.html).  
