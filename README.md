@@ -141,13 +141,14 @@ This demo offers a simple end-to-end example that runs the full analysis pipelin
 It can be executed locally without any dataset setup or preprocessing steps from the main implementation.
 
 📁 Script location
-
+    ```
 src/demo/ft_video_analysis.py
+    ```
 
 ▶️ Run the demo
+```bash
 python ft_video_analysis.py --video_path "C:/Users/Tahereh/video.MP4" --hand2track Right
-
-
+```
 Arguments:
 
 --video_path: Path to the input video file
