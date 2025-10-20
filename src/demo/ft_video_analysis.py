@@ -44,7 +44,7 @@ class ft_video_analysis:
     
         # If model doesn't exist, download it
         if not os.path.exists(model_path):
-            print("🔽 hand_landmarker.task not found. Downloading...")
+            print("hand_landmarker.task not found. Downloading...")
     
             # Mediapipe official model URL (Google-hosted)
             url = "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task"
@@ -55,7 +55,7 @@ class ft_video_analysis:
             except Exception as e:
                 raise RuntimeError(f"❌ Failed to download model: {e}")
     
-        # Now safely load it (exists either originally or downloaded)
+        #
         with open(model_path, 'rb') as file:
             model_data = file.read()
     
