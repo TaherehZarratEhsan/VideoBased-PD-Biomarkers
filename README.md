@@ -67,7 +67,7 @@ pip install -r requirements.txt
 If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
 
 - **video_path**: Full path to each video  
-- **score**: Clinical MDS‑UPDRS score"  
+- **score**: Clinical MDS‑UPDRS score 
 - **id**: Patient ID  
 
 Save it in `data/raw/segmented_ft_vid2score.csv`.
