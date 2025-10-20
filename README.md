@@ -11,7 +11,6 @@ Radboud University, Donders Institute for Brain, Cognition and Behaviour
 
 <p align="center">
   <img src="assets/ft.gif" width="49%" />
-  <img src="assets/LA.gif" width="49%" />
 </p>
 
 ## 📂 Repository Structure
