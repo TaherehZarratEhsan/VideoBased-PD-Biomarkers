@@ -91,7 +91,7 @@ python src/preprocessing/keypoint_extraction.py
 
 This will:
 - Process all listed videos using Mediapipe’s HandLandmarker  
-- Extract either distance‑based or angle‑based signals (set in config)  
+- Extract distance‑based signals 
 - Save a dictionary with `video_path`, `distances`, `keypoints`, `id`, `label`, and `fps`  
 
 The output will be stored in:
