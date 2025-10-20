@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 13 13:16:55 2025
 
-@author: Z984222
-"""
 
 import numpy as np
 from scipy.signal import find_peaks
