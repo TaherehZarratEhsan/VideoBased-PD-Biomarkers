@@ -101,7 +101,7 @@ data/raw/video_keypoints.pkl
 ```
 #### 🔹 Feature Extraction
 
-After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
+After downloading keypoints (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
 
 ```bash
 python src/feature_extraction/feature_extaction.py
