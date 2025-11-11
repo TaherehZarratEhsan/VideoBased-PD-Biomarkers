@@ -10,8 +10,7 @@ Radboud University, Donders Institute for Brain, Cognition and Behaviour
 
 
 <p align="center">
-  <img src="assets/ft.gif" width="49%" />
-  <img src="assets/LA.gif" width="49%" />
+  <img src="assets/ft.gif" width="60%" />
 </p>
 
 ## 📂 Repository Structure
@@ -62,13 +61,13 @@ pip install -r requirements.txt
 
 ---
 ## ▶️ Usage
-### 🔹 Part 1: Official Implementation (Reproduction of the Paper)
+### 🔹 Part 1: Official Implementation
 #### 🔹 Keypoint Extraction
 
 If you want to build your own pickle file (`video_keypoints.pkl`) from raw videos, first prepare a CSV file with the following columns:
 
 - **video_path**: Full path to each video  
-- **score**: Clinical MDS‑UPDRS score"  
+- **score**: Clinical MDS‑UPDRS score 
 - **id**: Patient ID  
 
 Save it in `data/raw/segmented_ft_vid2score.csv`.
@@ -92,8 +91,8 @@ python src/preprocessing/keypoint_extraction.py
 
 This will:
 - Process all listed videos using Mediapipe’s HandLandmarker  
-- Extract either distance‑based or angle‑based signals (set in config)  
-- Save a dictionary with `video_path`, `distances`, `keypoints`, `id`, `label`, and `fps`  
+- Extract distance‑based signals 
+- Save a dictionary with `video_path`, `distance signal`, `keypoints`, `id`, `label`, and `fps`  
 
 The output will be stored in:
 
@@ -102,7 +101,7 @@ data/raw/video_keypoints.pkl
 ```
 #### 🔹 Feature Extraction
 
-After downloading (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
+After downloading keypoints (or generating) and placing `video_keypoints.pkl` in `data/raw/`, run:
 
 ```bash
 python src/feature_extraction/feature_extaction.py
@@ -141,23 +140,20 @@ This demo offers a simple end-to-end example that runs the full analysis pipelin
 It can be executed locally without any dataset setup or preprocessing steps from the main implementation.
 
 📁 Script location
-
+    ```
 src/demo/ft_video_analysis.py
+    ```
 
 ▶️ Run the demo
+```bash
 python ft_video_analysis.py --video_path "C:/Users/Tahereh/video.MP4" --hand2track Right
-
-
+```
 Arguments:
-
+    ```
 --video_path: Path to the input video file
-
 --hand2track: Which hand to analyze (Left or Right)
-
-💡 Example:
-
-python ft_video_analysis.py --video_path "sample_videos/finger_tapping_right.MP4" --hand2track Righ
-
+    ```
+    
 ## 📥 Data Access
 
 Data from the [Personalized Parkinson Project](https://www.personalizedparkinsonproject.com/home) used in the present study were retrieved from the [PEP database](https://pep.cs.ru.nl/index.html).  

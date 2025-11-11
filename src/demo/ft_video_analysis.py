@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c9a4eaa7c45901e735327b566c39a485dab54ec
 
 import numpy as np
 from scipy.signal import find_peaks
@@ -43,7 +47,7 @@ class ft_video_analysis:
     
         # If model doesn't exist, download it
         if not os.path.exists(model_path):
-            print("🔽 hand_landmarker.task not found. Downloading...")
+            print("hand_landmarker.task not found. Downloading...")
     
             # Mediapipe official model URL (Google-hosted)
             url = "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task"
@@ -54,6 +58,10 @@ class ft_video_analysis:
             except Exception as e:
                 raise RuntimeError(f"❌ Failed to download model: {e}")
     
+<<<<<<< HEAD
+=======
+        #
+>>>>>>> 2c9a4eaa7c45901e735327b566c39a485dab54ec
         with open(model_path, 'rb') as file:
             model_data = file.read()
     
