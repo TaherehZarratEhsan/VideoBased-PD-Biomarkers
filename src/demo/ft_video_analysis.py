@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 13 13:16:55 2025
-
-@author: Z984222
-"""
 
 import numpy as np
 from scipy.signal import find_peaks
@@ -60,7 +54,6 @@ class ft_video_analysis:
             except Exception as e:
                 raise RuntimeError(f"❌ Failed to download model: {e}")
     
-        # Now safely load it (exists either originally or downloaded)
         with open(model_path, 'rb') as file:
             model_data = file.read()
     
@@ -98,7 +91,7 @@ class ft_video_analysis:
             order = 4                  
             nyq = 0.5 * fs             
             cutoff_frequencies =  5.0
-            normal_cutoff = cutoff_frequencies / nyq  # normalize the cutoff
+            normal_cutoff = cutoff_frequencies / nyq  
             b, a = butter(order, normal_cutoff, btype='low', analog=False)
             filtered_signal = filtfilt(b, a, distances_)
             distances_ = filtered_signal
@@ -111,14 +104,28 @@ class ft_video_analysis:
             order = 4                  
             nyq = 0.5 * fs             
             cutoff_frequencies =  9.0
-            normal_cutoff = cutoff_frequencies / nyq  # normalize the cutoff
+            normal_cutoff = cutoff_frequencies / nyq  
             b, a = butter(order, normal_cutoff, btype='low', analog=False)
             filtered_signal = filtfilt(b, a, distances_)
             #distances_ = filtered_signal
             peaks, _ = find_peaks(distances_, distance=5 , height=np.mean(distances_)/2, prominence=np.mean(distances_)/2)
             troughs, _ = find_peaks(-distances_, distance=5, height=-np.mean(distances_), prominence=np.mean(distances_)/2)
                 
-         #peaks, troughs = self.remove_consecutive_events(distances_, peaks, troughs)
+
+
+         valid_troughs = []
+         for i in range(len(troughs) - 1):
+            current_trough = troughs[i]
+            next_trough = troughs[i + 1]
+            
+            peaks_between = peaks[(peaks > current_trough) & (peaks < next_trough)]
+            
+            if len(peaks_between) > 0:
+                if i == 0:  
+                    valid_troughs.append(current_trough)
+                valid_troughs.append(next_trough)
+        
+         troughs = np.array(valid_troughs)      
          ############################################################## Compute speed signal
          time_interval = 1 / self.fps
          speed_signal = np.diff(distances_) / time_interval # Speed = Δdistance / Δtime
@@ -167,11 +174,11 @@ class ft_video_analysis:
          per_cycle_speed_avg_frame_numbers = []
 
          for i in range(len(amplitudes) - 1):
-             start_idx = peaks[i]  # Start of the window
-             end_idx = peaks[i + 1]  # End of the window
-             window_speed = speed_signal[start_idx:end_idx]  # Slice the speed signal
+             start_idx = troughs[i]      #
+             end_idx = troughs[i + 1]    #     
+             window_speed = speed_signal[start_idx:end_idx]  
              
-             if len(window_speed) > 0:  # Ensure the window is not empty
+             if len(window_speed) > 0:  
                  per_cycle_speed_maxima.append(np.percentile(np.abs(window_speed), 95))
                  per_cycle_speed_avg.append(np.mean(np.abs(window_speed)))
                  avg_frame = (start_idx + end_idx) // 2
@@ -195,7 +202,7 @@ class ft_video_analysis:
          model_speed = LinearRegression()
          model_speed.fit(time_points_speed, np.abs(per_cycle_speed_avg))
          speed_slope = model_speed.coef_[0]
-         # Compute tapping intervals (time between consecutive maxima)
+         # Compute cycel duration
          tapping_intervals = np.diff(peaks) / self.fps
 
          median_tapping_interval = np.median(tapping_intervals)
