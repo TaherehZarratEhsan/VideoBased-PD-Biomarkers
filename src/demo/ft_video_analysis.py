@@ -58,10 +58,7 @@ class ft_video_analysis:
             except Exception as e:
                 raise RuntimeError(f"❌ Failed to download model: {e}")
     
-<<<<<<< HEAD
-=======
         #
->>>>>>> 2c9a4eaa7c45901e735327b566c39a485dab54ec
         with open(model_path, 'rb') as file:
             model_data = file.read()
     
