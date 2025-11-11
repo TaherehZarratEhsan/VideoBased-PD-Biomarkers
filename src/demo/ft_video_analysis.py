@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 2c9a4eaa7c45901e735327b566c39a485dab54ec
 
 import numpy as np
 from scipy.signal import find_peaks
